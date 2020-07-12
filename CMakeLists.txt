@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.8)
 
-project(Prueba_Rapida)
+project(server)
 
 set(CMAKE_CXX_STANDARD_REQUIRED 14)
 
@@ -22,7 +22,7 @@ set(head
     server/include/ghost.hpp
 )
 
-include_directories(${PROJECT_SOURCE_DIR}/include/)
+include_directories(${PROJECT_SOURCE_DIR}/server/include/)
 
 
 add_executable(run ${src} ${head})
