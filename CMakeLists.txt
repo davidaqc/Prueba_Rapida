@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED 14)
 set(src 
     src/main.cpp
     #src/server.cpp
-    src/game.cpp
+    #src/game.cpp
     #src/enemies.cpp
     #src/genetic_algorithm.cpp
     #src/bresenham_algorithm.cpp
