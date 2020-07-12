@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED 14)
 set(src 
     src/main.cpp
     #src/server.cpp
-    src/game.cpp
+    #src/game.cpp
     #src/enemies.cpp
     #src/genetic_algorithm.cpp
     #src/bresenham_algorithm.cpp
@@ -17,16 +17,16 @@ set(src
 
 set(head
     #include/server.hpp
-    include/game.hpp
+    #include/game.hpp
     #include/player.hpp
     #include/ghost.hpp
 )
 
 include_directories(${PROJECT_SOURCE_DIR}/include/)
 
-
+set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+set(THREADS_PREFER_PTHREAD_FLAG TRUE)
+find_package(Threads REQUIRED)
 add_executable(run ${src} ${head})
 
-set(THREADS_PREFER_PTHREAD_FLAG ON)
-find_package(Threads REQUIRED)
 target_link_libraries(run Threads::Threads)
