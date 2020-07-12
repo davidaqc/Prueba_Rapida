@@ -50,7 +50,7 @@ private:
      * Variable que contiene el grid del juego
      */
     int grid[200][200];
-    //unordered_map<int, ghost *> list;
+    unordered_map<int, ghost *> list;
     player p1;
 
 public:
