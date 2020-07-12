@@ -9,10 +9,10 @@ set(src
     server/src/server.cpp
     server/src/game.cpp
     server/src/enemies.cpp
-    src/genetic_algorithm.cpp
-    src/bresenham_algorithm.cpp
-    src/backtracking.cpp
-    src/a-star.cpp
+    server/src/genetic_algorithm.cpp
+    server/src/bresenham_algorithm.cpp
+    server/src/backtracking.cpp
+    server/src/a-star.cpp
 )
 
 set(head
