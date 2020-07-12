@@ -9,7 +9,7 @@ set(src
 )
 
 set(head
-    include/game.hpp
+    server/include/game.hpp
 )
 
 include_directories(${PROJECT_SOURCE_DIR}/include/)
