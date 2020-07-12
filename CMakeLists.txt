@@ -16,7 +16,7 @@ set(src
 )
 
 set(head
-    #include/server.hpp
+    include/server.hpp
     #include/game.hpp
     #include/player.hpp
     #include/ghost.hpp
