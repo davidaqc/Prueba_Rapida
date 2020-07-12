@@ -633,14 +633,14 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 
 
 // Driver program to test above function 
-int main() 
+/*int main() 
 { 
-    cout << "Inicio del Algortimo" << endl;
+    cout << "Inicio del Algortimo" << endl;*/
 
 	/* Description of the Grid- 
 	1--> The cell is not blocked 
 	0--> The cell is blocked */
-	int grid[ROW][COL] = 
+	/*int grid[ROW][COL] = 
 	{ 
 		{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1 }, 
 		{ 1, 0, 1, 0, 1, 1, 1, 0, 1, 1 }, 
@@ -664,4 +664,4 @@ int main()
     cout << "Final del Algortimo" << endl;
 
 	return(0); 
-}
+}*/

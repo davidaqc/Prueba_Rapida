@@ -153,7 +153,7 @@ vector<vector<int>> mutation(vector<vector<int>> population){
     return population;
 }
 
-int main(){
+/*int main(){
 
     vector<vector<int>> population = crearPoblacion(num,largo);
 
@@ -180,4 +180,4 @@ int main(){
     }
 
     return 0;
-}
+}*/

@@ -15,7 +15,7 @@ int x_end = 6;
 int y_end = 4;
 vector<vector<int>> maze;
 
-int main() {
+/*int main() {
 
 	bhm_line(x_begin, y_begin, x_end, y_end);
 	for(unsigned int i = 0; i<maze.size(); i++){
@@ -26,7 +26,7 @@ int main() {
 	}
 	return 0;
 	
-}
+}*/
 
 void bhm_line(int x1, int y1, int x2, int y2) {
 	int x,

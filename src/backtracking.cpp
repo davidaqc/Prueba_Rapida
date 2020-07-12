@@ -74,7 +74,7 @@ int solvemaze(int r, int c)
     return 0;
 
 }
-
+/*
 int main()
 {
     //making all elements of the solution matrix 0
@@ -91,4 +91,4 @@ int main()
     else
         printf("No solution\n");
     return 0;
-}
+}*/
