@@ -1,7 +1,4 @@
-
-#include <game.hpp>
-
-using namespace std;
+#include <iostream>
 
 int main()
 {
