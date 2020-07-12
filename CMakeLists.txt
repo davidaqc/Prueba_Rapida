@@ -16,16 +16,16 @@ set(src
 )
 
 set(head
-    server/include/server.hpp
-    server/include/game.hpp
-    server/include/player.hpp
-    server/include/ghost.hpp
+    include/server.hpp
+    include/game.hpp
+    include/player.hpp
+    include/ghost.hpp
 )
 
 include_directories(${PROJECT_SOURCE_DIR}/include/)
 
 
-add_executable(run ${src} ${head})
+add_executable(run ${src} server/${head})
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
