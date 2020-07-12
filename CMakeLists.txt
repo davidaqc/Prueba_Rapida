@@ -25,7 +25,7 @@ set(head
 include_directories(${PROJECT_SOURCE_DIR}/include/)
 
 
-add_executable(run ${src} ${PROJECT_SOURCE_DIR}/include/)
+add_executable(run ${src})
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
