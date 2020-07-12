@@ -5,24 +5,24 @@ project(Prueba_Rapida)
 set(CMAKE_CXX_STANDARD_REQUIRED 14)
 
 set(src 
-    server/src/main.cpp
-    server/src/server.cpp
-    server/src/game.cpp
-    server/src/enemies.cpp
-    server/src/genetic_algorithm.cpp
-    server/src/bresenham_algorithm.cpp
-    server/src/backtracking.cpp
-    server/src/a-star.cpp
+    src/main.cpp
+    src/server.cpp
+    src/game.cpp
+    src/enemies.cpp
+    src/genetic_algorithm.cpp
+    src/bresenham_algorithm.cpp
+    src/backtracking.cpp
+    src/a-star.cpp
 )
 
 set(head
-    server/include/server.hpp
-    server/include/game.hpp
-    server/include/player.hpp
-    server/include/ghost.hpp
+    include/server.hpp
+    include/game.hpp
+    include/player.hpp
+    include/ghost.hpp
 )
 
-include_directories(${PROJECT_SOURCE_DIR}/server/include/)
+include_directories(${PROJECT_SOURCE_DIR}/include/)
 
 
 add_executable(run ${src} ${head})
