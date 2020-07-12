@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <server.hpp>
+#include <mutex>
 
 using namespace std;
 
