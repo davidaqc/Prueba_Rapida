@@ -3,8 +3,8 @@
 
 #include <server.hpp>
 #include <unordered_map>
-//#include <ghost.hpp>
-//#include <player.hpp>
+#include <ghost.hpp>
+#include <player.hpp>
 
 using namespace std;
 
@@ -51,7 +51,7 @@ private:
      */
     int grid[200][200];
     //unordered_map<int, ghost *> list;
-    //player p1;
+    player p1;
 
 public:
     /**
