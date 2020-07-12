@@ -1,11 +1,10 @@
-#include <game.hpp>
+#include <mutex>
 
 using namespace std;
 
 int main()
 {
-    game *g1 = new game();
-    //g1->run_game();
+    static mutex access_send;
 
     return 0;
 }
