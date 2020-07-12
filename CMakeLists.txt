@@ -8,18 +8,18 @@ set(src
     src/main.cpp
     src/server.cpp
     src/game.cpp
-    #src/enemies.cpp
+    src/enemies.cpp
     #src/genetic_algorithm.cpp
     #src/bresenham_algorithm.cpp
-    #src/backtracking.cpp
+    src/backtracking.cpp
     #src/a-star.cpp
 )
 
 set(head
     include/server.hpp
     include/game.hpp
-    #include/player.hpp
-    #include/ghost.hpp
+    include/player.hpp
+    include/ghost.hpp
 )
 
 include_directories(${PROJECT_SOURCE_DIR}/include/)
