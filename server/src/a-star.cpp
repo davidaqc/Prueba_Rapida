@@ -17,9 +17,12 @@ struct cell
 { 
 	// Row and Column index of its parent 
 	// Note that 0 <= i <= ROW-1 & 0 <= j <= COL-1 
-	int parent_i, parent_j; 
+	int parent_i; 
+	int parent_j;
 	// f = g + h 
-	double f, g, h; 
+	double f; 
+	double g;
+	double h;
 }; 
 
 vector<vector<cell>> cellDetails;
@@ -67,7 +70,7 @@ double calculateHValue(int row, int col, Pair dest)
 // to destination 
 void tracePath(vector<vector<cell>> cellDetails, Pair dest) 
 { 
-	std::cout << "The Path is " << endl;
+	//std::cout << "The Path is " << endl;  -----
 	int row = dest.first; 
 	int col = dest.second; 
 
