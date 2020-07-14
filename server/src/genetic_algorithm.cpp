@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 #include <vector>
 #include <algorithm>
 #include <algorithms.hpp>
@@ -10,6 +11,8 @@ int num = 3;
 int pressure = 2;
 float mutation_chance = 0.2;
 int valor_inicial = 3; 
+std::random_device dev;
+std::mt19937 rng(dev());
 
 // Mostrar la poblacion
 void algorithms::mostrarPoblacion(vector<vector<int>> population){
@@ -22,12 +25,12 @@ void algorithms::mostrarPoblacion(vector<vector<int>> population){
 
 // Crea la poblacion.
 vector<vector<int>> algorithms::crearPoblacion(){
-    srand(time(NULL));
     vector<vector<int>> Poblacion;
     for(int i=0;i<num;i++){
         vector<int> individuo;
         for(int j=0;j<largo;j++){
-            individuo.push_back(rand() % valor_inicial + 1); // Valores del 1 al 3
+            std::uniform_int_distribution<std::mt19937::result_type> dist6(1,3);
+            individuo.push_back(dist6(rng)); // Valores del 1 al 3
         }        
         Poblacion.push_back(individuo);
     }
