@@ -1,9 +1,10 @@
 // A C++ Program to implement A* Search Algorithm 
 #include<bits/stdc++.h> 
+#include <algorithms.hpp>
 using namespace std; 
 
-#define ROW 9 
-#define COL 10 
+int ROW; 
+int COL; 
 
 // Creating a shortcut for int, int pair type 
 typedef pair<int, int> Pair; 
@@ -21,6 +22,8 @@ struct cell
 	double f, g, h; 
 }; 
 
+vector<vector<cell>> cellDetails;
+
 // A Utility Function to check whether given cell (row, col) 
 // is a valid cell or not. 
 bool isValid(int row, int col) 
@@ -33,7 +36,7 @@ bool isValid(int row, int col)
 
 // A Utility Function to check whether the given cell is 
 // blocked or not 
-bool isUnBlocked(int grid[][COL], int row, int col) 
+bool isUnBlocked(vector<vector<int>> grid, int row, int col) 
 { 
 	// Returns true if the cell is not blocked else false 
 	if (grid[row][col] == 1) 
@@ -62,9 +65,9 @@ double calculateHValue(int row, int col, Pair dest)
 
 // A Utility Function to trace the path from the source 
 // to destination 
-void tracePath(cell cellDetails[][COL], Pair dest) 
+void tracePath(vector<vector<cell>> cellDetails, Pair dest) 
 { 
-	printf ("\nThe Path is "); 
+	std::cout << "The Path is " << endl;
 	int row = dest.first; 
 	int col = dest.second; 
 
@@ -84,44 +87,65 @@ void tracePath(cell cellDetails[][COL], Pair dest)
 	while (!Path.empty()) 
 	{ 
 		pair<int,int> p = Path.top(); 
-		Path.pop(); 
-		printf("-> (%d,%d) ",p.first,p.second); 
+		Path.pop();
+		std::cout << p.first; 
+		std::cout << " "; 
+		std::cout << p.second << endl; 
 	} 
 
 	return; 
 } 
 
+void algorithms::generar1(int row1, int col1){
+    for(unsigned int i=0; i<row1; i++){
+        vector<cell> v1; 
+        for(unsigned int j=0; j<col1; j++){
+            cell x;
+			x.f = FLT_MAX;
+			x.g = FLT_MAX; 
+			x.h = FLT_MAX; 
+			x.parent_i = -1; 
+			x.parent_j = -1; 
+			v1.push_back(x);
+        }
+        cellDetails.push_back(v1); 
+    }
+}
+
 // A Function to find the shortest path between 
 // a given source cell to a destination cell according 
 // to A* Search Algorithm 
-void aStarSearch(int grid[][COL], Pair src, Pair dest) 
+void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) 
 { 
+	ROW = mapa.size();
+    COL = mapa[0].size(); 
+
 	// If the source is out of range 
 	if (isValid (src.first, src.second) == false) 
 	{ 
-		printf ("Source is invalid\n"); 
+		std::cout << "Source is invalid" << endl; 
 		return; 
 	} 
 
 	// If the destination is out of range 
 	if (isValid (dest.first, dest.second) == false) 
 	{ 
-		printf ("Destination is invalid\n"); 
+		std::cout << "Destination is invalid" << endl;
 		return; 
 	} 
 
 	// Either the source or the destination is blocked 
-	if (isUnBlocked(grid, src.first, src.second) == false || 
-			isUnBlocked(grid, dest.first, dest.second) == false) 
+	if (isUnBlocked(mapa, src.first, src.second) == false || 
+			isUnBlocked(mapa, dest.first, dest.second) == false) 
 	{ 
-		printf ("Source or the destination is blocked\n"); 
+		std::cout << "Source or the destination is blocked" << endl;
 		return; 
 	} 
 
 	// If the destination cell is the same as source cell 
 	if (isDestination(src.first, src.second, dest) == true) 
 	{ 
-		printf ("We are already at the destination\n"); 
+		std::cout << "We are already at the destination" << endl;
 		return; 
 	} 
 
@@ -133,7 +157,10 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 
 	// Declare a 2D array of structure to hold the details 
 	//of that cell 
-	cell cellDetails[ROW][COL]; 
+	//cell cellDetails[ROW][COL]; 
+
+	//vector<vector<cell>> cellDetails;
+	generar1(ROW, COL);
 
 	int i, j; 
 
@@ -222,7 +249,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 				// Set the Parent of the destination cell 
 				cellDetails[i-1][j].parent_i = i; 
 				cellDetails[i-1][j].parent_j = j; 
-				printf ("The destination cell is found\n"); 
+				std::cout << "The destination cell is found" << endl;
 				tracePath (cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -231,7 +258,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 			// list or if it is blocked, then ignore it. 
 			// Else do the following 
 			else if (closedList[i-1][j] == false && 
-					isUnBlocked(grid, i-1, j) == true) 
+					isUnBlocked(mapa, i-1, j) == true) 
 			{ 
 				gNew = cellDetails[i][j].g + 1.0; 
 				hNew = calculateHValue (i-1, j, dest); 
@@ -273,7 +300,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 				// Set the Parent of the destination cell 
 				cellDetails[i+1][j].parent_i = i; 
 				cellDetails[i+1][j].parent_j = j; 
-				printf("The destination cell is found\n"); 
+				std::cout << "The destination cell is found" << endl;
 				tracePath(cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -282,7 +309,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 			// list or if it is blocked, then ignore it. 
 			// Else do the following 
 			else if (closedList[i+1][j] == false && 
-					isUnBlocked(grid, i+1, j) == true) 
+					isUnBlocked(mapa, i+1, j) == true) 
 			{ 
 				gNew = cellDetails[i][j].g + 1.0; 
 				hNew = calculateHValue(i+1, j, dest); 
@@ -322,7 +349,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 				// Set the Parent of the destination cell 
 				cellDetails[i][j+1].parent_i = i; 
 				cellDetails[i][j+1].parent_j = j; 
-				printf("The destination cell is found\n"); 
+				std::cout << "The destination cell is found" << endl;
 				tracePath(cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -332,7 +359,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 			// list or if it is blocked, then ignore it. 
 			// Else do the following 
 			else if (closedList[i][j+1] == false && 
-					isUnBlocked (grid, i, j+1) == true) 
+					isUnBlocked (mapa, i, j+1) == true) 
 			{ 
 				gNew = cellDetails[i][j].g + 1.0; 
 				hNew = calculateHValue (i, j+1, dest); 
@@ -374,7 +401,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 				// Set the Parent of the destination cell 
 				cellDetails[i][j-1].parent_i = i; 
 				cellDetails[i][j-1].parent_j = j; 
-				printf("The destination cell is found\n"); 
+				std::cout << "The destination cell is found" << endl;
 				tracePath(cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -384,7 +411,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 			// list or if it is blocked, then ignore it. 
 			// Else do the following 
 			else if (closedList[i][j-1] == false && 
-					isUnBlocked(grid, i, j-1) == true) 
+					isUnBlocked(mapa, i, j-1) == true) 
 			{ 
 				gNew = cellDetails[i][j].g + 1.0; 
 				hNew = calculateHValue(i, j-1, dest); 
@@ -426,7 +453,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 				// Set the Parent of the destination cell 
 				cellDetails[i-1][j+1].parent_i = i; 
 				cellDetails[i-1][j+1].parent_j = j; 
-				printf ("The destination cell is found\n"); 
+				std::cout << "The destination cell is found" << endl;
 				tracePath (cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -436,7 +463,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 			// list or if it is blocked, then ignore it. 
 			// Else do the following 
 			else if (closedList[i-1][j+1] == false && 
-					isUnBlocked(grid, i-1, j+1) == true) 
+					isUnBlocked(mapa, i-1, j+1) == true) 
 			{ 
 				gNew = cellDetails[i][j].g + 1.414; 
 				hNew = calculateHValue(i-1, j+1, dest); 
@@ -478,7 +505,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 				// Set the Parent of the destination cell 
 				cellDetails[i-1][j-1].parent_i = i; 
 				cellDetails[i-1][j-1].parent_j = j; 
-				printf ("The destination cell is found\n"); 
+				std::cout << "The destination cell is found" << endl;
 				tracePath (cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -488,7 +515,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 			// list or if it is blocked, then ignore it. 
 			// Else do the following 
 			else if (closedList[i-1][j-1] == false && 
-					isUnBlocked(grid, i-1, j-1) == true) 
+					isUnBlocked(mapa, i-1, j-1) == true) 
 			{ 
 				gNew = cellDetails[i][j].g + 1.414; 
 				hNew = calculateHValue(i-1, j-1, dest); 
@@ -528,7 +555,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 				// Set the Parent of the destination cell 
 				cellDetails[i+1][j+1].parent_i = i; 
 				cellDetails[i+1][j+1].parent_j = j; 
-				printf ("The destination cell is found\n"); 
+				std::cout << "The destination cell is found" << endl;
 				tracePath (cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -538,7 +565,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 			// list or if it is blocked, then ignore it. 
 			// Else do the following 
 			else if (closedList[i+1][j+1] == false && 
-					isUnBlocked(grid, i+1, j+1) == true) 
+					isUnBlocked(mapa, i+1, j+1) == true) 
 			{ 
 				gNew = cellDetails[i][j].g + 1.414; 
 				hNew = calculateHValue(i+1, j+1, dest); 
@@ -580,7 +607,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 				// Set the Parent of the destination cell 
 				cellDetails[i+1][j-1].parent_i = i; 
 				cellDetails[i+1][j-1].parent_j = j; 
-				printf("The destination cell is found\n"); 
+				std::cout << "The destination cell is found" << endl; 
 				tracePath(cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -590,7 +617,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 			// list or if it is blocked, then ignore it. 
 			// Else do the following 
 			else if (closedList[i+1][j-1] == false && 
-					isUnBlocked(grid, i+1, j-1) == true) 
+					isUnBlocked(mapa, i+1, j-1) == true) 
 			{ 
 				gNew = cellDetails[i][j].g + 1.414; 
 				hNew = calculateHValue(i+1, j-1, dest); 
@@ -626,42 +653,7 @@ void aStarSearch(int grid[][COL], Pair src, Pair dest)
 	// reach the destiantion cell. This may happen when the 
 	// there is no way to destination cell (due to blockages) 
 	if (foundDest == false) 
-		printf("Failed to find the Destination Cell\n"); 
+		std::cout << "Failed to find the Destination Cell" << endl;
 
 	return; 
 } 
-
-
-// Driver program to test above function 
-/*int main() 
-{ 
-    cout << "Inicio del Algortimo" << endl;*/
-
-	/* Description of the Grid- 
-	1--> The cell is not blocked 
-	0--> The cell is blocked */
-	/*int grid[ROW][COL] = 
-	{ 
-		{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1 }, 
-		{ 1, 0, 1, 0, 1, 1, 1, 0, 1, 1 }, 
-		{ 1, 0, 1, 0, 1, 1, 0, 1, 0, 1 }, 
-		{ 1, 0, 1, 0, 1, 0, 0, 0, 0, 1 }, 
-		{ 1, 1, 1, 0, 1, 1, 1, 0, 1, 0 }, 
-		{ 1, 0, 1, 1, 1, 1, 0, 1, 0, 0 }, 
-		{ 1, 0, 0, 0, 0, 1, 0, 0, 0, 1 }, 
-		{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1 }, 
-		{ 1, 1, 1, 0, 0, 0, 1, 0, 0, 1 } 
-	}; 
-
-	// Source is the left-most bottom-most corner 
-	Pair src = make_pair(8, 0); 
-
-	// Destination is the left-most top-most corner 
-	Pair dest = make_pair(0, 0); 
-
-	aStarSearch(grid, src, dest); 
-
-    cout << "Final del Algortimo" << endl;
-
-	return(0); 
-}*/

@@ -4,31 +4,23 @@
 #include<stdlib.h>
 #include<math.h>
 #include<vector>
+#include <algorithms.hpp>
 
 using namespace std;
 
-void bhm_line(int, int, int, int);
+vector<vector<int>> ruta;
 
-int x_begin = 0;
-int y_begin = 0;
-int x_end1 = 6;
-int y_end1 = 4;
-vector<vector<int>> maze1;
-
-/*int main() {
-
-	bhm_line(x_begin, y_begin, x_end1, y_end1);
-	for(unsigned int i = 0; i<maze1.size(); i++){
-		for(unsigned int j = 0; j<maze1[i].size(); j++){
-			cout << maze1[i][j] << " ";
+void algorithms::ruta_bresenham(){
+	for(unsigned int i = 0; i<ruta.size(); i++){
+		for(unsigned int j = 0; j<ruta[i].size(); j++){
+			cout << ruta[i][j] << " ";
 		}
 		cout << endl;
 	}
-	return 0;
-	
-}*/
+}
 
-void bhm_line(int x1, int y1, int x2, int y2) {
+void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) {
+	
 	int x,
 	y,
 	dx,
@@ -63,7 +55,7 @@ void bhm_line(int x1, int y1, int x2, int y2) {
 		vector<int> coordenada;
 		coordenada.push_back(x);
 		coordenada.push_back(y);
-		maze1.push_back(coordenada);
+		ruta.push_back(coordenada);
 
 		for(i=0; x<xe; i++) {
 			x=x+1;
@@ -87,7 +79,7 @@ void bhm_line(int x1, int y1, int x2, int y2) {
 			vector<int> coordenada;
 			coordenada.push_back(x);
 			coordenada.push_back(y);
-			maze1.push_back(coordenada);
+			ruta.push_back(coordenada);
 		}
 	}
 
@@ -107,7 +99,7 @@ void bhm_line(int x1, int y1, int x2, int y2) {
 		vector<int> coordenada;
 		coordenada.push_back(x);
 		coordenada.push_back(y);
-		maze1.push_back(coordenada);
+		ruta.push_back(coordenada);
 
 		for(i=0; y<ye; i++) {
 			y=y+1;
@@ -131,7 +123,7 @@ void bhm_line(int x1, int y1, int x2, int y2) {
 			vector<int> coordenada;
 			coordenada.push_back(x);
 			coordenada.push_back(y);
-			maze1.push_back(coordenada);
+			ruta.push_back(coordenada);
 		}
 	}
 }

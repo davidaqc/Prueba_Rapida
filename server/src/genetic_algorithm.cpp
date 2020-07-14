@@ -1,26 +1,33 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <algorithms.hpp>
 
 using namespace std;
 
-int modelo [] = {3,3,3,3,3,3};
-int largo = 6;
-int num = 4;
-int pressure = 3;
+int largo = 3;
+int num = 3;
+int pressure = 2;
 float mutation_chance = 0.2;
-int max_valor = 3; // 1,2,3
-int valor_modelo = 3;
-int max_generaciones = 100;
+int valor_inicial = 3; 
+
+// Mostrar la poblacion
+void algorithms::mostrarPoblacion(vector<vector<int>> population){
+    for (unsigned int i = 0; i < population.size(); i++) { 
+        for (unsigned int j = 0; j < population[i].size(); j++) 
+            cout << population[i][j] << " "; 
+        cout << endl;
+    }
+}
 
 // Crea la poblacion.
-vector<vector<int>> crearPoblacion(int num, int largo){
+vector<vector<int>> algorithms::crearPoblacion(){
     srand(time(NULL));
     vector<vector<int>> Poblacion;
     for(int i=0;i<num;i++){
         vector<int> individuo;
         for(int j=0;j<largo;j++){
-            individuo.push_back(rand() % max_valor + 1); // Valores del 1 al 3
+            individuo.push_back(rand() % valor_inicial + 1); // Valores del 1 al 3
         }        
         Poblacion.push_back(individuo);
     }
@@ -28,7 +35,7 @@ vector<vector<int>> crearPoblacion(int num, int largo){
 }
 
 // Funcion Fitness
-vector<vector<int>> fitness(vector<vector<int>> population){
+vector<vector<int>> algorithms::fitness(vector<vector<int>> population, int valor_modelo){
     vector<vector<int>> puntuados;
     for (unsigned int i = 0; i < population.size(); i++) { 
         vector<int> individuo;
@@ -51,10 +58,10 @@ vector<vector<int>> fitness(vector<vector<int>> population){
 }
 
 // Funcion seleccion y reproduccion
-vector<vector<int>> selection_and_reproduction(vector<vector<int>> population){
+vector<vector<int>> algorithms::selection_and_reproduction(vector<vector<int>> population, int valor_modelo){
 
     // Calcula el fitness
-    population = fitness(population);
+    population = fitness(population, valor_modelo);
 
     // Ordena el vector
     sort(population.begin(), population.end());
@@ -127,7 +134,7 @@ vector<vector<int>> selection_and_reproduction(vector<vector<int>> population){
 }
 
 // Funcion mutacion
-vector<vector<int>> mutation(vector<vector<int>> population){  
+vector<vector<int>> algorithms::mutation(vector<vector<int>> population, int max_valor){  
 
     for (unsigned int ii = 0; ii < population.size()-pressure; ii++){
         //Cada individuo de la poblacion (menos los padres) tienen una probabilidad de mutar
@@ -152,32 +159,3 @@ vector<vector<int>> mutation(vector<vector<int>> population){
 
     return population;
 }
-
-/*int main(){
-
-    vector<vector<int>> population = crearPoblacion(num,largo);
-
-    // Se muestra la poblacion inicial
-    cout << "Poblacion Inicial:" << endl;
-    for (unsigned int i = 0; i < population.size(); i++) { 
-        for (unsigned int j = 0; j < population[i].size(); j++) 
-            cout << population[i][j] << " "; 
-        cout << endl;
-    }
-    
-    //Se evoluciona la poblacion
-    for (int i = 0; i<max_generaciones; i++){
-        population = selection_and_reproduction(population);
-        population = mutation(population);
-    }
-
-    // Se muestra la poblacion final
-    cout << "Poblacion Final:" << endl;
-    for (unsigned int i = 0; i < population.size(); i++) { 
-        for (unsigned int j = 0; j < population[i].size(); j++) 
-            cout << population[i][j] << " "; 
-        cout << endl; 
-    }
-
-    return 0;
-}*/
