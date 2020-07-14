@@ -29,8 +29,8 @@ vector<vector<int>> algorithms::crearPoblacion(){
     for(int i=0;i<num;i++){
         vector<int> individuo;
         for(int j=0;j<largo;j++){
-            std::uniform_int_distribution<std::mt19937::result_type> dist6(1,3);
-            individuo.push_back(dist6(rng)); // Valores del 1 al 3
+            std::uniform_int_distribution<std::mt19937::result_type> dist1(1,3);
+            individuo.push_back(dist1(rng)); // Valores del 1 al 3
         }        
         Poblacion.push_back(individuo);
     }
@@ -96,15 +96,19 @@ vector<vector<int>> algorithms::selection_and_reproduction(vector<vector<int>> p
 
     // Se mezcla el material genetico para crear nuevos individuos
     for (unsigned int ii = 0; ii < population.size()-pressure; ii++){
-        unsigned int punto = (rand() % largo + 1) - 1; //Se elige un punto para hacer el intercambio
+        std::uniform_int_distribution<std::mt19937::result_type> dist1(0,(largo-1)); 
+        unsigned int punto = dist1(rng); //Se elige un punto para hacer el intercambio
 
         // Se eligen dos padres
         int size_selected = selected.size();
-        unsigned int padre1 = (rand() % size_selected + 1) - 1;
-        unsigned int padre2 = (rand() % size_selected + 1) - 1;
+        std::uniform_int_distribution<std::mt19937::result_type> dist2(0,(size_selected-1));
+        unsigned int padre1 = dist2(rng);
+        std::uniform_int_distribution<std::mt19937::result_type> dist3(0,(size_selected-1));
+        unsigned int padre2 = dist3(rng);
         if (padre1==padre2){
             while (padre1==padre2){
-                padre2 = (rand() % size_selected + 1) - 1;
+                std::uniform_int_distribution<std::mt19937::result_type> dist4(0,(size_selected-1));
+                padre2 = dist4(rng);
             }
         }
         vector<vector<int>> padre;
@@ -141,18 +145,23 @@ vector<vector<int>> algorithms::mutation(vector<vector<int>> population, int max
 
     for (unsigned int ii = 0; ii < population.size()-pressure; ii++){
         //Cada individuo de la poblacion (menos los padres) tienen una probabilidad de mutar
-            float aleatorio = float((rand() % 9999)) / float(10000);
+            std::uniform_int_distribution<std::mt19937::result_type> dist1(1,9999);
+            float aleatorio = float(dist1(rng)) / float(10000);
             if (aleatorio <= mutation_chance){
                 
                 //  Se elige un punto al azar
-                unsigned int punto = (rand() % largo + 1) - 1;
+                std::uniform_int_distribution<std::mt19937::result_type> dist2(0,(largo-1)); 
+                unsigned int punto = dist2(rng);
 
                 // y un nuevo valor para este punto
-                int nuevo_valor = (rand() % max_valor + 1);
+                std::uniform_int_distribution<std::mt19937::result_type> dist3(1,max_valor);
+                int nuevo_valor = dist3(rng);
+                
     
                 //Es importante mirar que el nuevo valor no sea igual al viejo
                 while (nuevo_valor == population[ii][punto]){
-                    nuevo_valor = (rand() % max_valor + 1);
+                    std::uniform_int_distribution<std::mt19937::result_type> dist4(1,max_valor);
+                    nuevo_valor = dist4(rng);
                 }
                     
                 //Se aplica la mutacion
