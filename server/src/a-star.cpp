@@ -70,7 +70,7 @@ double calculateHValue(int row, int col, Pair dest)
 // to destination 
 void tracePath(vector<vector<cell>> cellDetails, Pair dest) 
 { 
-	//std::cout << "The Path is " << endl;  -----
+	//std::cout << "The Path is " << endl;
 	int row = dest.first; 
 	int col = dest.second; 
 

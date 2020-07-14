@@ -13,8 +13,8 @@ vector<vector<int>> ruta;
 void algorithms::ruta_bresenham(){
 	for(unsigned int i = 0; i<ruta.size(); i++){
 		for(unsigned int j = 0; j<ruta[i].size(); j++){
-			// --- std::cout << ruta[i][j] << " "; ---
-			
+			// --- std::cout << ruta[i][j] << " ";
+			// std::cout << ruta[i][j] << " "; ---
 		}
 		// --- std::cout << endl; ---
 	}
