@@ -1,21 +1,21 @@
 /*BRESENHAAM ALGORITHM FOR LINE DRAWING*/
-#include<iostream>
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
 #include<vector>
 #include <algorithms.hpp>
 
+#include <iostream>
+#include <string>
 using namespace std;
-
 vector<vector<int>> ruta;
 
 void algorithms::ruta_bresenham(){
 	for(unsigned int i = 0; i<ruta.size(); i++){
 		for(unsigned int j = 0; j<ruta[i].size(); j++){
-			cout << ruta[i][j] << " ";
+			std::cout << ruta[i][j] << " ";
 		}
-		cout << endl;
+		std::cout << endl;
 	}
 }
 
