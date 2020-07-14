@@ -12,9 +12,9 @@ using namespace std;
 vector<vector<int>> ruta;
 
 void algorithms::ruta_bresenham() const{
-	for(unsigned int i = 0; i<ruta.size(); i++){
-		for(unsigned int j = 0; j<ruta[i].size(); j++){
-			std::cout << ruta[i][j] << " ";
+	for(auto& rows: ruta){
+		for(auto& elem: rows){
+			//std::cout << ruta[i][j] << " ";-
 		}
 		//std::cout << endl;-
 	}
@@ -22,21 +22,20 @@ void algorithms::ruta_bresenham() const{
 
 void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 	
-	int x,
-	y,
-	dx,
-	dy,
-	dx1,
-	dy1,
-	px,
-	py,
-	xe,
-	ye,
-	i;
+	int x;
+	int y;
+	int dx;
+	int dy;
+	int dx1;
+	int dy1;
+	int px;
+	int py;
+	int xe;
+	int ye;
 	dx=x2-x1;
 	dy=y2-y1;
-	dx1=fabs(dx);
-	dy1=fabs(dy);
+	dx1= -1 * dx;
+	dy1= -1 * dy;
 	px=2*dy1-dx1;
 	py=2*dx1-dy1;
 
