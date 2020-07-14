@@ -22,6 +22,7 @@ void algorithms::ruta_bresenham() const{
 
 void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 	
+	vector<int> coordenada;
 	int x;
 	int y;
 	int dx;
@@ -52,7 +53,6 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 			xe=x1;
 		}
 
-		vector<int> coordenada;
 		coordenada.push_back(x);
 		coordenada.push_back(y);
 		ruta.push_back(coordenada);
@@ -63,20 +63,14 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 			if(px<0) {
 				px=px+2*dy1;
 			}
-
-			else {
-				if((dx<0 && dy<0) || (dx>0 && dy>0)) {
-					y=y+1;
-				}
-
-				else {
-					y=y-1;
-				}
-
+			else if((dx<0 && dy<0) || (dx>0 && dy>0)) {
+				y=y+1;
 				px=px+2*(dy1-dx1);
+			}else {
+				y=y-1;
+				px=px+2*(dy1-dx1);	
 			}
 			
-			vector<int> coordenada;
 			coordenada.push_back(x);
 			coordenada.push_back(y);
 			ruta.push_back(coordenada);
@@ -96,7 +90,6 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 			ye=y1;
 		}
 
-		vector<int> coordenada;
 		coordenada.push_back(x);
 		coordenada.push_back(y);
 		ruta.push_back(coordenada);
@@ -107,20 +100,16 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 			if(py<=0) {
 				py=py+2*dx1;
 			}
-
-			else {
-				if((dx<0 && dy<0) || (dx>0 && dy>0)) {
-					x=x+1;
-				}
-
-				else {
-					x=x-1;
-				}
-
+			else if((dx<0 && dy<0) || (dx>0 && dy>0)) {
+				x=x+1;
 				py=py+2*(dx1-dy1);
 			}
 
-			vector<int> coordenada;
+			else {
+				x=x-1;
+				py=py+2*(dx1-dy1);	
+			}
+
 			coordenada.push_back(x);
 			coordenada.push_back(y);
 			ruta.push_back(coordenada);
