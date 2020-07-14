@@ -18,8 +18,8 @@ class algorithms{
         vector<vector<int>> mutation(vector<vector<int>> population, int max_valor);
 
         // Metodos algoritmo Bresenham
-        void algoritmo_bresenham(int x_begin, int y_begin, int x_end1, int y_end1);
-        void ruta_bresenham();
+        void algoritmo_bresenham(int x_begin, int y_begin, int x_end1, int y_end1) const;
+        void ruta_bresenham() const;
 
         // Metodos algoritmo Backtracking
         int algoritmo_backtracking(int r, int c, int x_end, int y_end, vector<vector<int>> mapa);

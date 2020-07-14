@@ -8,18 +8,19 @@
 #include <iostream>
 #include <string>
 using namespace std;
+
 vector<vector<int>> ruta;
 
-void algorithms::ruta_bresenham(){
+void algorithms::ruta_bresenham() const{
 	for(unsigned int i = 0; i<ruta.size(); i++){
 		for(unsigned int j = 0; j<ruta[i].size(); j++){
-			//std::cout << ruta[i][j] << " ";-
+			std::cout << ruta[i][j] << " ";
 		}
 		//std::cout << endl;-
 	}
 }
 
-void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) {
+void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 	
 	int x,
 	y,
