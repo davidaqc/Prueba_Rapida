@@ -57,7 +57,7 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) {
 		coordenada.push_back(y);
 		ruta.push_back(coordenada);
 
-		for(int i=0; x<xe; i++) {
+		while(x<xe) {
 			x=x+1;
 
 			if(px<0) {
@@ -101,7 +101,7 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) {
 		coordenada.push_back(y);
 		ruta.push_back(coordenada);
 
-		for(int i=0; y<ye; i++) {
+		while(y<ye) {
 			y=y+1;
 
 			if(py<=0) {
