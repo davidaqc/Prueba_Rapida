@@ -58,7 +58,7 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 		ruta.push_back(coordenada);
 
 		while(x<xe) {
-			x=x+1;
+			//x=x+1;
 
 			if(px<0) {
 				px=px+2*dy1;
