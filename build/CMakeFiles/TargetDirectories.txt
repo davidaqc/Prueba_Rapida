@@ -1,3 +1,0 @@
-/home/davidaqc/Documents/Prueba/Prueba_Rapida/build/CMakeFiles/rebuild_cache.dir
-/home/davidaqc/Documents/Prueba/Prueba_Rapida/build/CMakeFiles/run.dir
-/home/davidaqc/Documents/Prueba/Prueba_Rapida/build/CMakeFiles/edit_cache.dir

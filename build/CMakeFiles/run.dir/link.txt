@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/run.dir/server/src/main.cpp.o CMakeFiles/run.dir/server/src/genetic_algorithm.cpp.o CMakeFiles/run.dir/server/src/bresenham_algorithm.cpp.o CMakeFiles/run.dir/server/src/backtracking.cpp.o CMakeFiles/run.dir/server/src/a-star.cpp.o  -o run -pthread 
