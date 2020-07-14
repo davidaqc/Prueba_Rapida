@@ -58,12 +58,15 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 		ruta.push_back(coordenada);
 
 		while(x<xe) {
-			//x=x+1;
+			x=x+1;
 
 			if(px<0) {
 				px=px+2*dy1;
 			}
-			else if((dx<0 && dy<0) || (dx>0 && dy>0)) {
+			else if((dx<0 && dy<0)) {
+				y=y+1;
+				px=px+2*(dy1-dx1);
+			}else if((dx>0 && dy>0)) {
 				y=y+1;
 				px=px+2*(dy1-dx1);
 			}else {
@@ -100,7 +103,10 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 			if(py<=0) {
 				py=py+2*dx1;
 			}
-			else if((dx<0 && dy<0) || (dx>0 && dy>0)) {
+			else if((dx<0 && dy<0)) {
+				x=x+1;
+				py=py+2*(dx1-dy1);
+			}else if((dx>0 && dy>0)) {
 				x=x+1;
 				py=py+2*(dx1-dy1);
 			}
