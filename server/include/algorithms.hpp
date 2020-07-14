@@ -20,6 +20,7 @@ class algorithms{
         // Metodos algoritmo Bresenham
         void algoritmo_bresenham(int x_begin, int y_begin, int x_end1, int y_end1) const;
         void ruta_bresenham() const;
+        void a(int x1, int y1, int x2, int y2) const;
 
         // Metodos algoritmo Backtracking
         int algoritmo_backtracking(int r, int c, int x_end, int y_end, vector<vector<int>> mapa);

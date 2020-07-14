@@ -79,11 +79,10 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 
 	else {
 		a(x1, y1, x2, y2);
-
 	}
 }
 
-void a(int x1, int y1, int x2, int y2){
+void algorithms::a(int x1, int y1, int x2, int y2) const{
 	vector<int> coordenada;
 	int x;
 	int y;
