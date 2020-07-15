@@ -12,10 +12,12 @@ using namespace std;
 vector<vector<int>> ruta;
 
 void algorithms::ruta_bresenham() const{
-
-	auto sum = 0;
-	for (auto elt : ruta) {
-		continue;
+	for(auto rows: ruta){
+		for(auto elem: rows){
+			//std::cout << ruta[i][j] << " ";-
+			continue;
+		}
+		//std::cout << endl;-
 	}
 }
 
