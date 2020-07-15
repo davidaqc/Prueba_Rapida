@@ -17,6 +17,7 @@ void algorithms::ruta_bresenham(vector<vector<int>> ruta) const{
 			LOG(INFO) << (" ");
 		}
 		LOG(INFO) << ("\n");
+		cout << "";
 	}
 }
 
