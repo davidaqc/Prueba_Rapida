@@ -3,8 +3,6 @@
 #include <vector>
 #include<bits/stdc++.h> 
  
-int ROW1;
-int COL1;
 bool entrar = true;
 vector<vector<int>> solution;
 vector< pair <int,int> > solution1;  
@@ -35,10 +33,8 @@ void algorithms::ruta_backtracking()
 int algorithms::algoritmo_backtracking(int r, int c, int x_end, int y_end, vector<vector<int>> mapa)
 {
 
-    if (entrar!=false){
-        ROW1 = mapa.size();
-        COL1 = mapa[0].size(); 
-        generar(ROW1, COL1);
+    if (entrar!=false){ 
+        generar(mapa.size(), mapa[0].size());
         entrar = false;
     }
     //if destination is reached, maze is solved
@@ -53,7 +49,7 @@ int algorithms::algoritmo_backtracking(int r, int c, int x_end, int y_end, vecto
     //the indices of the cell must be in (0,SIZE-1)
     //and solution[r][c] == 0 is making sure that the cell is not already visited
     //maze[r][c] == 0 is making sure that the cell is not blocked
-    if(r>=0 && c>=0 && r<ROW1 && c<COL1 && solution[r][c] == 0 && mapa[r][c] == 0)
+    if(r>=0 && c>=0 && r<mapa.size() && c<mapa[0].size() && solution[r][c] == 0 && mapa[r][c] == 0)
     {
         //if safe to visit then visit the cell
         solution[r][c] = 1;

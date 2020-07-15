@@ -8,8 +8,8 @@ set(src
     server/src/main.cpp
     #server/src/genetic_algorithm.cpp
     #server/src/bresenham_algorithm.cpp
-    server/src/backtracking.cpp
-    #server/src/a-star.cpp
+    #server/src/backtracking.cpp
+    server/src/a-star.cpp
 )
 
 set(head
