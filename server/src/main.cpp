@@ -9,8 +9,8 @@ using namespace std;
 int main()
 {
     AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);
-    LOG(INFO) << "Hola";
-    //algorithms *g1 = new algorithms();
+    LOG(INFO) << "Mensaje inicial\n";
+    algorithms *g1 = new algorithms();
     
     /*vector<vector<int>> population = g1->crearPoblacion();
 
@@ -35,8 +35,7 @@ int main()
     g1->mostrarPoblacion(population);*/
 
     // ---- Ejecutar Bresenham (x_inicial, y_inicial, x_final, y_final)
-    //g1->algoritmo_bresenham(2,1,8,5);
-    //g1->ruta_bresenham();
+    g1->algoritmo_bresenham(1,1,8,5);
 
     /*vector<vector<int>> mapa = {
 		{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1 }, 

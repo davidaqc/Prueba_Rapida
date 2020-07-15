@@ -4,19 +4,20 @@
 #include<math.h>
 #include<vector>
 #include <algorithms.hpp>
-
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 void algorithms::ruta_bresenham(vector<vector<int>> ruta) const{
-	/* --- for(auto rows: ruta){
+	AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);
+	for(auto rows: ruta){
 		for(auto elem: rows){
-			//std::cout << ruta[i][j] << " ";-
-			continue;
+			LOG(INFO) << (elem);
+			LOG(INFO) << (" ");
 		}
-		//std::cout << endl;-
-	} -- */
+		LOG(INFO) << ("\n");
+	}
 }
 
 void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
