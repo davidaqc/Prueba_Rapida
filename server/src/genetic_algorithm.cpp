@@ -14,12 +14,14 @@ const int valor_inicial = 3;
 
 // Mostrar la poblacion
 void algorithms::mostrarPoblacion(vector<vector<int>> population) const{
+    AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);
     int a = int(population.size());
     int b = int(population[0].size());
     for (unsigned int i = 0; i < a; i++) { 
-        for (unsigned int j = 0; j < b; j++) 
-            cout << population[i][j] << " "; 
-        cout << endl;
+        for (unsigned int j = 0; j < b; j++)
+            LOG(INFO) << population[i][j];
+            LOG(INFO) << (" ");
+        LOG(INFO) << ("\n");
     }
 }
 
