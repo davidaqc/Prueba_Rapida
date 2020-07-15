@@ -85,7 +85,7 @@ vector<vector<int>> algorithms::selection_and_reproduction(vector<vector<int>> p
     population = puntuados;
 
     // Esto selecciona los 'n' individuos del final, donde n viene dado por 'pressure'
-    unsigned int individuos_quitar = population.size() - pressure;
+    unsigned int individuos_quitar = int(population.size() - pressure);
     vector<vector<int>> selected;
     for (unsigned int i = 0; i < population.size(); i++) {
         vector<int> individuo2;
@@ -100,18 +100,18 @@ vector<vector<int>> algorithms::selection_and_reproduction(vector<vector<int>> p
     // Se mezcla el material genetico para crear nuevos individuos
     for (unsigned int ii = 0; ii < population.size()-pressure; ii++){
         std::uniform_int_distribution<std::mt19937::result_type> dist1(0,(largo-1)); 
-        unsigned int punto = dist1(rng); //Se elige un punto para hacer el intercambio
+        unsigned int punto = int(dist1(rng)); //Se elige un punto para hacer el intercambio
 
         // Se eligen dos padres
         int size_selected = selected.size();
         std::uniform_int_distribution<std::mt19937::result_type> dist2(0,(size_selected-1));
-        unsigned int padre1 = dist2(rng);
+        unsigned int padre1 = int(dist2(rng));
         std::uniform_int_distribution<std::mt19937::result_type> dist3(0,(size_selected-1));
-        unsigned int padre2 = dist3(rng);
+        unsigned int padre2 = int(dist3(rng));
         if (padre1==padre2){
             while (padre1==padre2){
                 std::uniform_int_distribution<std::mt19937::result_type> dist4(0,(size_selected-1));
-                padre2 = dist4(rng);
+                padre2 = int(dist4(rng));
             }
         }
         vector<vector<int>> padre;
@@ -131,7 +131,7 @@ vector<vector<int>> algorithms::selection_and_reproduction(vector<vector<int>> p
         }
             
         //Se mezcla el material genetico del padre 1 en cada nuevo individuo
-        unsigned indice_mayor = population[0].size() - 1;
+        unsigned indice_mayor = int(population[0].size() - 1);
         for (unsigned int j=indice_mayor; j>=((indice_mayor - punto)); j--) {
             population[ii][j] = padre[1][j];
             if (j==0){
@@ -155,17 +155,17 @@ vector<vector<int>> algorithms::mutation(vector<vector<int>> population, int max
                 
                 //  Se elige un punto al azar
                 std::uniform_int_distribution<std::mt19937::result_type> dist2(0,(largo-1)); 
-                unsigned int punto = dist2(rng);
+                unsigned int punto = int(dist2(rng));
 
                 // y un nuevo valor para este punto
                 std::uniform_int_distribution<std::mt19937::result_type> dist3(1,max_valor);
-                int nuevo_valor = dist3(rng);
+                int nuevo_valor = int(dist3(rng));
                 
     
                 //Es importante mirar que el nuevo valor no sea igual al viejo
                 while (nuevo_valor == population[ii][punto]){
                     std::uniform_int_distribution<std::mt19937::result_type> dist4(1,max_valor);
-                    nuevo_valor = dist4(rng);
+                    nuevo_valor = int(dist4(rng));
                 }
                     
                 //Se aplica la mutacion
