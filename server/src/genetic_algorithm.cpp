@@ -46,8 +46,8 @@ vector<vector<int>> algorithms::fitness(vector<vector<int>> population, int valo
     std::random_device dev;
     std::mt19937 rng(dev());
     vector<vector<int>> puntuados;
-    int a = population.size();
-    int b = population[0].size();
+    int a = int(population.size());
+    int b = int(population[0].size());
     for (unsigned int i = 0; i < a; i++) { 
         vector<int> individuo;
         int c = individuo.size();
@@ -86,7 +86,7 @@ vector<vector<int>> algorithms::selection_and_reproduction(vector<vector<int>> p
     selected = quitar_individuos(population);
 
     // Se mezcla el material genetico para crear nuevos individuos
-    int a = population.size()-pressure;
+    int a = int(population.size()-pressure);
     for (unsigned int ii = 0; ii < a; ii++){
         std::uniform_int_distribution<std::mt19937::result_type> dist1(0,(largo-1)); 
         unsigned int punto = int(dist1(rng)); //Se elige un punto para hacer el intercambio
@@ -104,8 +104,8 @@ vector<vector<int>> algorithms::selection_and_reproduction(vector<vector<int>> p
             }
         }
         vector<vector<int>> padre;
-        int b = selected.size();
-        int c = selected[0].size();
+        int b = int(selected.size());
+        int c = int(selected[0].size());
         for (unsigned int i = 0; i < b; i++) {
             vector<int> individuo3;
             if (i==padre1 || i==padre2){
@@ -138,7 +138,7 @@ vector<vector<int>> algorithms::selection_and_reproduction(vector<vector<int>> p
 vector<vector<int>> algorithms::mutation(vector<vector<int>> population, int max_valor) const{  
     std::random_device dev;
     std::mt19937 rng(dev());
-    int a = population.size()-pressure;
+    int a = int(population.size()-pressure);
     for (unsigned int ii = 0; ii < a; ii++){
         //Cada individuo de la poblacion (menos los padres) tienen una probabilidad de mutar
             std::uniform_int_distribution<std::mt19937::result_type> dist1(1,9999);
@@ -171,8 +171,8 @@ vector<vector<int>> algorithms::mutation(vector<vector<int>> population, int max
 vector<vector<int>> algorithms::eliminar_valores_vector(vector<vector<int>> population) const{
     // Eliminar el primer valor de cada vector
     vector<vector<int>> puntuados;
-    int a = population.size();
-    int b = population[0].size();
+    int a = int(population.size());
+    int b = int(population[0].size());
     for (unsigned int i = 0; i < a; i++) { 
         vector<int> individuo;
         for (unsigned int j = 1; j < b; j++){
@@ -187,8 +187,8 @@ vector<vector<int>> algorithms::quitar_individuos(vector<vector<int>> population
     // Esto selecciona los 'n' individuos del final, donde n viene dado por 'pressure'
     unsigned int individuos_quitar = int(population.size() - pressure);
     vector<vector<int>> selected;
-    int a = population.size();
-    int b = population[0].size();
+    int a = int(population.size());
+    int b = int(population[0].size());
     for (unsigned int i = 0; i < a; i++) {
         vector<int> individuo2;
         if (i >= individuos_quitar){
