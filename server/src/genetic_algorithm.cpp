@@ -30,8 +30,7 @@ vector<vector<int>> algorithms::crearPoblacion() const{
         vector<int> individuo;
         for(int j=0;j<largo;j++){
             std::uniform_int_distribution<std::mt19937::result_type> dist1(1,3);
-            int a = int(dist1(rng));
-            individuo.push_back(1); // Valores del 1 al 3
+            individuo.push_back(int(dist1(rng))); // Valores del 1 al 3
         }        
         Poblacion.push_back(individuo);
     }
