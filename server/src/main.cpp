@@ -37,7 +37,7 @@ int main()
     // ---- Ejecutar Bresenham (x_inicial, y_inicial, x_final, y_final)
     //g1->algoritmo_bresenham(1,1,8,5);
 
-    /*vector<vector<int>> mapa = {
+    vector<vector<int>> mapa = {
 		{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1 }, 
 		{ 1, 0, 1, 0, 1, 1, 1, 0, 1, 1 }, 
 		{ 1, 1, 1, 0, 1, 1, 0, 1, 0, 1 }, 
@@ -47,15 +47,15 @@ int main()
 		{ 1, 0, 0, 0, 0, 1, 0, 0, 0, 1 }, 
 		{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1 }, 
 		{ 1, 1, 1, 0, 0, 0, 1, 0, 0, 1 } 
-    };*/
+    };
 
-    // ---- Ejecutar Backtracking (y_inicial, x_inicial, y_final, x_final)    
-    /*if(g1->algoritmo_backtracking(1, 3, 7, 6, mapa)){
+    // ---- Ejecutar Backtracking (y_inicial, x_inicial, y_final, x_final) 
+    vector<vector<int>> solution;  
+    if(g1->algoritmo_backtracking(1, 3, 7, 6, mapa, solution)){
         g1->ruta_backtracking();
     }else{
         std::cout << "No hay solucion" << endl;
-    }*/
-    
+    } 
     // ---- Ejecutar A Star
     /*typedef pair<int, int> Pair; 
 	Pair src = make_pair(3, 0); // y_inicial, x_inicial
