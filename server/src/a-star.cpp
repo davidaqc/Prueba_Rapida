@@ -59,8 +59,9 @@ bool isDestination(int row, int col, Pair dest)
 double calculateHValue(int row, int col, Pair dest) 
 { 
 	// Return using the distance formula 
-	return ((double)sqrt ((row-dest.first)*(row-dest.first) 
-						+ (col-dest.second)*(col-dest.second))); 
+	double formula = double((double)sqrt ((row-dest.first)*(row-dest.first) 
+						+ (col-dest.second)*(col-dest.second)));
+	return formula; 
 } 
 
 // A Utility Function to trace the path from the source 
@@ -118,8 +119,8 @@ void algorithms::generar1(int row1, int col1) const{
 // to A* Search Algorithm 
 void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) const { 
 	AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);
-	int ROW_ = mapa.size();
-    int COL_ = mapa[0].size(); 
+	int ROW_ = int(mapa.size());
+    int COL_ = int(mapa[0].size()); 
 
 	// If the source is out of range 
 	if (isValid (src.first, src.second, ROW_, COL_) == false) 
@@ -177,7 +178,8 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) 
 	} 
 
 	// Initialising the parameters of the starting node 
-	i = src.first, j = src.second; 
+	i = src.first; 
+	j = src.second;
 	cellDetails[i][j].f = 0.0; 
 	cellDetails[i][j].g = 0.0; 
 	cellDetails[i][j].h = 0.0; 
