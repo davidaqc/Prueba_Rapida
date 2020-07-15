@@ -3,9 +3,6 @@
 #include <algorithms.hpp>
 using namespace std; 
 
-int ROW; 
-int COL; 
-
 // Creating a shortcut for int, int pair type 
 typedef pair<int, int> Pair; 
 
@@ -29,12 +26,12 @@ vector<vector<cell>> cellDetails;
 
 // A Utility Function to check whether given cell (row, col) 
 // is a valid cell or not. 
-bool isValid(int row, int col) 
+bool isValid(int row, int col, int ROW_, int COL_) 
 { 
 	// Returns true if row number and column number 
 	// is in range 
-	return (row >= 0) && (row < ROW) && 
-		(col >= 0) && (col < COL); 
+	return (row >= 0) && (row < ROW_) && 
+		(col >= 0) && (col < COL_); 
 } 
 
 // A Utility Function to check whether the given cell is 
@@ -121,18 +118,18 @@ void algorithms::generar1(int row1, int col1) const{
 // to A* Search Algorithm 
 void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) const { 
 	AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);
-	ROW = mapa.size();
-    COL = mapa[0].size(); 
+	int ROW_ = mapa.size();
+    int COL_ = mapa[0].size(); 
 
 	// If the source is out of range 
-	if (isValid (src.first, src.second) == false) 
+	if (isValid (src.first, src.second, ROW_, COL_) == false) 
 	{ 
     	LOG(INFO) << "Source is invalid \n";
 		return; 
 	} 
 
 	// If the destination is out of range 
-	if (isValid (dest.first, dest.second) == false) 
+	if (isValid (dest.first, dest.second, ROW_, COL_) == false) 
 	{ 
 		LOG(INFO) << "Destination is invalid \n";
 		return; 
@@ -156,21 +153,20 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) 
 	// Create a closed list and initialise it to false which means 
 	// that no cell has been included yet 
 	// This closed list is implemented as a boolean 2D array 
-	bool closedList[ROW][COL]; 
+	bool closedList[ROW_][COL_]; 
 	memset(closedList, false, sizeof (closedList)); 
 
 	// Declare a 2D array of structure to hold the details 
 	//of that cell 
-	//cell cellDetails[ROW][COL]; 
 
-	//vector<vector<cell>> cellDetails;
-	generar1(ROW, COL);
+	generar1(ROW_, COL_);
 
-	int i, j; 
+	int i; 
+	int j;
 
-	for (i=0; i<ROW; i++) 
+	for (i=0; i<ROW_; i++) 
 	{ 
-		for (j=0; j<COL; j++) 
+		for (j=0; j<COL_; j++) 
 		{ 
 			cellDetails[i][j].f = FLT_MAX; 
 			cellDetails[i][j].g = FLT_MAX; 
@@ -239,12 +235,14 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) 
 		S.W--> South-West (i+1, j-1)*/
 
 		// To store the 'g', 'h' and 'f' of the 8 successors 
-		double gNew, hNew, fNew; 
+		double gNew; 
+		double hNew;
+		double fNew;
 
 		//----------- 1st Successor (North) ------------ 
 
 		// Only process this cell if this is a valid one 
-		if (isValid(i-1, j) == true) 
+		if (isValid(i-1, j, ROW_, COL_) == true) 
 		{ 
 			// If the destination cell is the same as the 
 			// current successor 
@@ -295,7 +293,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) 
 		//----------- 2nd Successor (South) ------------ 
 
 		// Only process this cell if this is a valid one 
-		if (isValid(i+1, j) == true) 
+		if (isValid(i+1, j, ROW_, COL_) == true) 
 		{ 
 			// If the destination cell is the same as the 
 			// current successor 
@@ -344,7 +342,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) 
 		//----------- 3rd Successor (East) ------------ 
 
 		// Only process this cell if this is a valid one 
-		if (isValid (i, j+1) == true) 
+		if (isValid (i, j+1, ROW_, COL_) == true) 
 		{ 
 			// If the destination cell is the same as the 
 			// current successor 
@@ -396,7 +394,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) 
 		//----------- 4th Successor (West) ------------ 
 
 		// Only process this cell if this is a valid one 
-		if (isValid(i, j-1) == true) 
+		if (isValid(i, j-1, ROW_, COL_) == true) 
 		{ 
 			// If the destination cell is the same as the 
 			// current successor 
@@ -449,7 +447,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) 
 		//----------- 5th Successor (North-East) ------------ 
 
 		// Only process this cell if this is a valid one 
-		if (isValid(i-1, j+1) == true) 
+		if (isValid(i-1, j+1, ROW_, COL_) == true) 
 		{ 
 			// If the destination cell is the same as the 
 			// current successor 
@@ -501,7 +499,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) 
 		//----------- 6th Successor (North-West) ------------ 
 
 		// Only process this cell if this is a valid one 
-		if (isValid (i-1, j-1) == true) 
+		if (isValid (i-1, j-1, ROW_, COL_) == true) 
 		{ 
 			// If the destination cell is the same as the 
 			// current successor 
@@ -551,7 +549,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) 
 		//----------- 7th Successor (South-East) ------------ 
 
 		// Only process this cell if this is a valid one 
-		if (isValid(i+1, j+1) == true) 
+		if (isValid(i+1, j+1, ROW_, COL_) == true) 
 		{ 
 			// If the destination cell is the same as the 
 			// current successor 
@@ -603,7 +601,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) 
 		//----------- 8th Successor (South-West) ------------ 
 
 		// Only process this cell if this is a valid one 
-		if (isValid (i+1, j-1) == true) 
+		if (isValid (i+1, j-1, ROW_, COL_) == true) 
 		{ 
 			// If the destination cell is the same as the 
 			// current successor 

@@ -10,7 +10,7 @@ int main()
 {
     AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);
 
-    algorithms *g1 = new algorithms();
+    const algorithms *g1 = new algorithms();
     
     vector<vector<int>> population = g1->crearPoblacion();
 
