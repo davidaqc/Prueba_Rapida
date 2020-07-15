@@ -33,8 +33,8 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 	int xe;
 	dx=x2-x1;
 	dy=y2-y1;
-	dx1= -1 * dx;
-	dy1= -1 * dy;
+	dx1= abs(dx);
+	dy1= abs(dy);
 	px=2*dy1-dx1;
 	py=2*dx1-dy1;
 
