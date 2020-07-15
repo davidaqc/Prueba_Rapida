@@ -28,11 +28,10 @@ void algorithms::ruta_backtracking(vector< pair <int,int> > solution1) const{
 
 //function to solve the maze
 //using backtracking
-int algorithms::algoritmo_backtracking(int r, int c, int x_end, int y_end, vector<vector<int>> mapa, vector<vector<int>> solution, vector< pair <int,int> > solution1, bool entrar) const{
+int algorithms::algoritmo_backtracking(int r, int c, int x_end, int y_end, vector<vector<int>> mapa, vector<vector<int>> solution, vector< pair <int,int> > solution1) const{
 
-    if (entrar!=false){  
+    if (solution.size()==0){  
         generar(mapa.size(), mapa[0].size(), solution);
-        entrar = false;
     }
     //if destination is reached, maze is solved
     //destination is the last cell(maze[SIZE-1][SIZE-1])
@@ -52,16 +51,16 @@ int algorithms::algoritmo_backtracking(int r, int c, int x_end, int y_end, vecto
         solution[r][c] = 1;
         solution1.push_back(make_pair(r,c));
         //going down
-        if(algoritmo_backtracking(r+1, c, x_end, y_end, mapa, solution, solution1, entrar))
+        if(algoritmo_backtracking(r+1, c, x_end, y_end, mapa, solution, solution1))
             return 1;
         //going right
-        if(algoritmo_backtracking(r, c+1, x_end, y_end, mapa, solution, solution1, entrar))
+        if(algoritmo_backtracking(r, c+1, x_end, y_end, mapa, solution, solution1))
             return 1;
         //going up
-        if(algoritmo_backtracking(r-1, c, x_end, y_end, mapa, solution, solution1, entrar))
+        if(algoritmo_backtracking(r-1, c, x_end, y_end, mapa, solution, solution1))
             return 1;
         //going left
-        if(algoritmo_backtracking(r, c-1, x_end, y_end, mapa, solution, solution1, entrar))
+        if(algoritmo_backtracking(r, c-1, x_end, y_end, mapa, solution, solution1))
             return 1;
         //backtracking
         solution[r][c] = 0;
