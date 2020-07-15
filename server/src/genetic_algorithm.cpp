@@ -6,13 +6,11 @@
 
 using namespace std;
 
-int largo = 3;
-int num = 3;
-int pressure = 2;
-float mutation_chance = 0.2;
-int valor_inicial = 3; 
-std::random_device dev;
-std::mt19937 rng(dev());
+const int largo = 3;
+const int num = 3;
+const int pressure = 2;
+const float mutation_chance = 0.2;
+const int valor_inicial = 3; 
 
 // Mostrar la poblacion
 void algorithms::mostrarPoblacion(vector<vector<int>> population){
@@ -25,6 +23,8 @@ void algorithms::mostrarPoblacion(vector<vector<int>> population){
 
 // Crea la poblacion.
 vector<vector<int>> algorithms::crearPoblacion(){
+    std::random_device dev;
+    std::mt19937 rng(dev());
     vector<vector<int>> Poblacion;
     for(int i=0;i<num;i++){
         vector<int> individuo;
@@ -39,6 +39,8 @@ vector<vector<int>> algorithms::crearPoblacion(){
 
 // Funcion Fitness
 vector<vector<int>> algorithms::fitness(vector<vector<int>> population, int valor_modelo){
+    std::random_device dev;
+    std::mt19937 rng(dev());
     vector<vector<int>> puntuados;
     for (unsigned int i = 0; i < population.size(); i++) { 
         vector<int> individuo;
@@ -62,7 +64,8 @@ vector<vector<int>> algorithms::fitness(vector<vector<int>> population, int valo
 
 // Funcion seleccion y reproduccion
 vector<vector<int>> algorithms::selection_and_reproduction(vector<vector<int>> population, int valor_modelo){
-
+    std::random_device dev;
+    std::mt19937 rng(dev());
     // Calcula el fitness
     population = fitness(population, valor_modelo);
 
@@ -142,7 +145,8 @@ vector<vector<int>> algorithms::selection_and_reproduction(vector<vector<int>> p
 
 // Funcion mutacion
 vector<vector<int>> algorithms::mutation(vector<vector<int>> population, int max_valor){  
-
+    std::random_device dev;
+    std::mt19937 rng(dev());
     for (unsigned int ii = 0; ii < population.size()-pressure; ii++){
         //Cada individuo de la poblacion (menos los padres) tienen una probabilidad de mutar
             std::uniform_int_distribution<std::mt19937::result_type> dist1(1,9999);

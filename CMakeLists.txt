@@ -5,10 +5,10 @@ project(server)
 set(CMAKE_CXX_STANDARD_REQUIRED 14)
 
 set(src 
-    server/src/main.cpp
+    #server/src/main.cpp
     server/src/genetic_algorithm.cpp
     #server/src/bresenham_algorithm.cpp
-    server/src/backtracking.cpp
+    #server/src/backtracking.cpp
     #server/src/a-star.cpp
 )
 
