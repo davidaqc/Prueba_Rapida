@@ -21,8 +21,6 @@ void algorithms::ruta_bresenham() const{
 
 void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 	vector<vector<int>> ruta;
-	vector<int> coordenada;
-	vector<int> coordenada1;
 	int x;
 	int y;
 	int dx;
@@ -51,7 +49,7 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 			y=y2;
 			xe=x1;
 		}
-	
+		vector<int> coordenada;
 		coordenada.push_back(x);
 		coordenada.push_back(y);
 		ruta.push_back(coordenada);
@@ -69,7 +67,7 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 				y=y-1;
 				px=px+2*(dy1-dx1);	
 			}
-			
+			vector<int> coordenada1;
 			coordenada1.push_back(x);
 			coordenada1.push_back(y);
 			ruta.push_back(coordenada1);
