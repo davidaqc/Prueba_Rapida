@@ -2,17 +2,20 @@
 #include <algorithms.hpp>
 #include <iostream>
 #include <string>
+#include <aixlog.hpp>
 
 using namespace std;
 
 int main()
 {
+    AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);
+
     algorithms *g1 = new algorithms();
     
-    /*vector<vector<int>> population = g1->crearPoblacion();
+    vector<vector<int>> population = g1->crearPoblacion();
 
       // Se muestra la poblacion inicial
-    cout << "Poblacion Inicial:" << endl;
+    LOG(INFO) << "Poblacion Inicial:\n";
     g1->mostrarPoblacion(population);
 
     // Algunos de la poblacion 1 + otros creados(en caso que hayan muerto)
@@ -28,11 +31,11 @@ int main()
     }
 
     // Se muestra la poblacion final
-    cout << "Poblacion Final:" << endl;
-    g1->mostrarPoblacion(population);*/
+    LOG(INFO) << "Poblacion final:\n";
+    g1->mostrarPoblacion(population);
 
     // ---- Ejecutar Bresenham (x_inicial, y_inicial, x_final, y_final)
-    //g1->algoritmo_bresenham(1,1,8,5);
+    g1->algoritmo_bresenham(1,1,8,5);
 
     vector<vector<int>> mapa = {
 		{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1 }, 
@@ -47,18 +50,18 @@ int main()
     };
 
     // ---- Ejecutar Backtracking (y_inicial, x_inicial, y_final, x_final) 
-    /*vector<vector<int>> solution;  
+    vector<vector<int>> solution;  
     if(g1->algoritmo_backtracking(1, 3, 7, 6, mapa, solution)){
         g1->ruta_backtracking();
     }else{
-        std::cout << "No hay solucion" << endl;
-    }*/
-
+        LOG(INFO) << "No hay solucion\n";
+    }
+    
     // ---- Ejecutar A Star
-    /*typedef pair<int, int> Pair; 
+    typedef pair<int, int> Pair; 
 	Pair src = make_pair(3, 0); // y_inicial, x_inicial
 	Pair dest = make_pair(8, 2); // y_final, x_final
-	g1->algoritmo_aStar(src, dest, mapa);*/
+	g1->algoritmo_aStar(src, dest, mapa);
 
 
     return 0;

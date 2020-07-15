@@ -70,7 +70,8 @@ double calculateHValue(int row, int col, Pair dest)
 // to destination 
 void tracePath(vector<vector<cell>> cellDetails, Pair dest) 
 { 
-	//std::cout << "The Path is " << endl;
+	AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);
+    LOG(INFO) << "The Path is \n";
 	int row = dest.first; 
 	int col = dest.second; 
 
@@ -91,15 +92,15 @@ void tracePath(vector<vector<cell>> cellDetails, Pair dest)
 	{ 
 		pair<int,int> p = Path.top(); 
 		Path.pop();
-		std::cout << p.first; 
-		std::cout << " "; 
-		std::cout << p.second << endl; 
+		LOG(INFO) << p.first;
+		LOG(INFO) << p.second;
+		LOG(INFO) << " \n";
 	} 
 
 	return; 
 } 
 
-void algorithms::generar1(int row1, int col1){
+void algorithms::generar1(int row1, int col1) const{
     for(unsigned int i=0; i<row1; i++){
         vector<cell> v1; 
         for(unsigned int j=0; j<col1; j++){
@@ -118,22 +119,22 @@ void algorithms::generar1(int row1, int col1){
 // A Function to find the shortest path between 
 // a given source cell to a destination cell according 
 // to A* Search Algorithm 
-void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) 
-{ 
+void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) const { 
+	AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);
 	ROW = mapa.size();
     COL = mapa[0].size(); 
 
 	// If the source is out of range 
 	if (isValid (src.first, src.second) == false) 
 	{ 
-		std::cout << "Source is invalid" << endl; 
+    	LOG(INFO) << "Source is invalid \n";
 		return; 
 	} 
 
 	// If the destination is out of range 
 	if (isValid (dest.first, dest.second) == false) 
 	{ 
-		std::cout << "Destination is invalid" << endl;
+		LOG(INFO) << "Destination is invalid \n";
 		return; 
 	} 
 
@@ -141,14 +142,14 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa)
 	if (isUnBlocked(mapa, src.first, src.second) == false || 
 			isUnBlocked(mapa, dest.first, dest.second) == false) 
 	{ 
-		std::cout << "Source or the destination is blocked" << endl;
+		LOG(INFO) << "Source or the destination is blocked \n";
 		return; 
 	} 
 
 	// If the destination cell is the same as source cell 
 	if (isDestination(src.first, src.second, dest) == true) 
 	{ 
-		std::cout << "We are already at the destination" << endl;
+		LOG(INFO) << "We are already at the destination \n";
 		return; 
 	} 
 
@@ -252,7 +253,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa)
 				// Set the Parent of the destination cell 
 				cellDetails[i-1][j].parent_i = i; 
 				cellDetails[i-1][j].parent_j = j; 
-				std::cout << "The destination cell is found" << endl;
+				LOG(INFO) << "The destination cell is found \n";
 				tracePath (cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -303,7 +304,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa)
 				// Set the Parent of the destination cell 
 				cellDetails[i+1][j].parent_i = i; 
 				cellDetails[i+1][j].parent_j = j; 
-				std::cout << "The destination cell is found" << endl;
+				LOG(INFO) << "The destination cell is found \n";
 				tracePath(cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -352,7 +353,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa)
 				// Set the Parent of the destination cell 
 				cellDetails[i][j+1].parent_i = i; 
 				cellDetails[i][j+1].parent_j = j; 
-				std::cout << "The destination cell is found" << endl;
+				LOG(INFO) << "The destination cell is found \n";
 				tracePath(cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -404,7 +405,8 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa)
 				// Set the Parent of the destination cell 
 				cellDetails[i][j-1].parent_i = i; 
 				cellDetails[i][j-1].parent_j = j; 
-				std::cout << "The destination cell is found" << endl;
+				
+				LOG(INFO) << "The destination cell is found \n";
 				tracePath(cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -456,7 +458,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa)
 				// Set the Parent of the destination cell 
 				cellDetails[i-1][j+1].parent_i = i; 
 				cellDetails[i-1][j+1].parent_j = j; 
-				std::cout << "The destination cell is found" << endl;
+				LOG(INFO) << "The destination cell is found \n";
 				tracePath (cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -508,7 +510,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa)
 				// Set the Parent of the destination cell 
 				cellDetails[i-1][j-1].parent_i = i; 
 				cellDetails[i-1][j-1].parent_j = j; 
-				std::cout << "The destination cell is found" << endl;
+				LOG(INFO) << "The destination cell is found \n";
 				tracePath (cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -558,7 +560,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa)
 				// Set the Parent of the destination cell 
 				cellDetails[i+1][j+1].parent_i = i; 
 				cellDetails[i+1][j+1].parent_j = j; 
-				std::cout << "The destination cell is found" << endl;
+				LOG(INFO) << "The destination cell is found \n";
 				tracePath (cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -610,7 +612,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa)
 				// Set the Parent of the destination cell 
 				cellDetails[i+1][j-1].parent_i = i; 
 				cellDetails[i+1][j-1].parent_j = j; 
-				std::cout << "The destination cell is found" << endl; 
+				LOG(INFO) << "The destination cell is found \n"; 
 				tracePath(cellDetails, dest); 
 				foundDest = true; 
 				return; 
@@ -656,7 +658,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa)
 	// reach the destiantion cell. This may happen when the 
 	// there is no way to destination cell (due to blockages) 
 	if (foundDest == false) 
-		std::cout << "Failed to find the Destination Cell" << endl;
+		LOG(INFO) << "Failed to find the Destination Cell \n";
 
 	return; 
 } 
