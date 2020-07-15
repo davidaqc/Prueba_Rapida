@@ -14,8 +14,10 @@ const int valor_inicial = 3;
 
 // Mostrar la poblacion
 void algorithms::mostrarPoblacion(vector<vector<int>> population) const{
-    for (unsigned int i = 0; i < population.size(); i++) { 
-        for (unsigned int j = 0; j < population[i].size(); j++) 
+    int a = int(population.size());
+    int b = int(population[0].size());
+    for (unsigned int i = 0; i < a; i++) { 
+        for (unsigned int j = 0; j < b; j++) 
             cout << population[i][j] << " "; 
         cout << endl;
     }
@@ -103,7 +105,7 @@ vector<vector<int>> algorithms::selection_and_reproduction(vector<vector<int>> p
         unsigned int punto = int(dist1(rng)); //Se elige un punto para hacer el intercambio
 
         // Se eligen dos padres
-        int size_selected = selected.size();
+        int size_selected = int(selected.size());
         std::uniform_int_distribution<std::mt19937::result_type> dist2(0,(size_selected-1));
         unsigned int padre1 = int(dist2(rng));
         std::uniform_int_distribution<std::mt19937::result_type> dist3(0,(size_selected-1));
