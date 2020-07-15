@@ -1,13 +1,15 @@
-#include<bits/stdc++.h> 
-#include <algorithms.hpp>
-#include <iostream>
+#include <fstream>
+#include <utility>
+#include <vector>
 #include <string>
+#include <iostream>
+#include <glog/logging.h>
 
 using namespace std;
 
 int main()
 {
-    std::cout << "Hola" << endl;
+    LOG(INFO) << "";
     std::cout << "g";
     cout << "Hola" << endl;
     cout << "Hola";
