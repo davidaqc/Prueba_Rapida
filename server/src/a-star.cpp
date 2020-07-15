@@ -22,8 +22,6 @@ struct cell
 	double h;
 }; 
 
-vector<vector<cell>> cellDetails;
-
 // A Utility Function to check whether given cell (row, col) 
 // is a valid cell or not. 
 bool isValid(int row, int col, int ROW_, int COL_) 
@@ -59,14 +57,13 @@ bool isDestination(int row, int col, Pair dest)
 double calculateHValue(int row, int col, Pair dest) 
 { 
 	// Return using the distance formula 
-	double formula = double((double)sqrt ((row-dest.first)*(row-dest.first) 
-						+ (col-dest.second)*(col-dest.second)));
-	return formula; 
+	return sqrt ((row-dest.first)*(row-dest.first) 
+						+ (col-dest.second)*(col-dest.second)); 
 } 
 
 // A Utility Function to trace the path from the source 
 // to destination 
-void tracePath(vector<vector<cell>> cellDetails, Pair dest) 
+void tracePath(vector<vector<cell>> cellDetails1, Pair dest) 
 { 
 	AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);
     LOG(INFO) << "The Path is \n";
@@ -75,12 +72,12 @@ void tracePath(vector<vector<cell>> cellDetails, Pair dest)
 
 	stack<Pair> Path; 
 
-	while (!(cellDetails[row][col].parent_i == row 
-			&& cellDetails[row][col].parent_j == col )) 
+	while (!(cellDetails1[row][col].parent_i == row 
+			&& cellDetails1[row][col].parent_j == col )) 
 	{ 
 		Path.push (make_pair (row, col)); 
-		int temp_row = cellDetails[row][col].parent_i; 
-		int temp_col = cellDetails[row][col].parent_j; 
+		int temp_row = cellDetails1[row][col].parent_i; 
+		int temp_col = cellDetails1[row][col].parent_j; 
 		row = temp_row; 
 		col = temp_col; 
 	} 
@@ -98,7 +95,7 @@ void tracePath(vector<vector<cell>> cellDetails, Pair dest)
 	return; 
 } 
 
-void algorithms::generar1(int row1, int col1) const{
+void algorithms::generar1(int row1, int col1, vector<vector<cell>> cellDetails2) const{
     for(unsigned int i=0; i<row1; i++){
         vector<cell> v1; 
         for(unsigned int j=0; j<col1; j++){
@@ -110,7 +107,7 @@ void algorithms::generar1(int row1, int col1) const{
 			x.parent_j = -1; 
 			v1.push_back(x);
         }
-        cellDetails.push_back(v1); 
+        cellDetails2.push_back(v1); 
     }
 }
 
@@ -118,6 +115,7 @@ void algorithms::generar1(int row1, int col1) const{
 // a given source cell to a destination cell according 
 // to A* Search Algorithm 
 void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) const { 
+	vector<vector<cell>> cellDetails;
 	AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);
 	int ROW_ = int(mapa.size());
     int COL_ = int(mapa[0].size()); 
@@ -160,7 +158,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) 
 	// Declare a 2D array of structure to hold the details 
 	//of that cell 
 
-	generar1(ROW_, COL_);
+	generar1(ROW_, COL_, cellDetails);
 
 	int i; 
 	int j;

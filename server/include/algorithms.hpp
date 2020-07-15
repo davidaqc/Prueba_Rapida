@@ -33,5 +33,5 @@ class algorithms{
         // Metodos algortimo A Star
         typedef pair<int, int> Pair;
         void algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) const;
-        void generar1(int row, int col) const;
+        void generar1(int row, int col, vector<vector<cell>> cellDetails2) const;
 };
