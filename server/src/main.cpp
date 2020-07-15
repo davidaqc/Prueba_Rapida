@@ -12,7 +12,7 @@ int main()
     LOG(INFO) << "Hola\n";
     algorithms *g1 = new algorithms();
     
-    /*vector<vector<int>> population = g1->crearPoblacion();
+    vector<vector<int>> population = g1->crearPoblacion();
 
       // Se muestra la poblacion inicial
     cout << "Poblacion Inicial:" << endl;
@@ -25,17 +25,17 @@ int main()
     };
     
     //Se evoluciona la poblacion
-    for (int i = 0; i<10; i++){ // generaciones
+    for (int i = 0; i<1; i++){ // generaciones
         population = g1->selection_and_reproduction(population, 3); // Valor_modelo
         population = g1->mutation(population, 3); // Valor_maximo
     }
 
     // Se muestra la poblacion final
     cout << "Poblacion Final:" << endl;
-    g1->mostrarPoblacion(population);*/
+    g1->mostrarPoblacion(population);
 
     // ---- Ejecutar Bresenham (x_inicial, y_inicial, x_final, y_final)
-    g1->algoritmo_bresenham(1,1,8,5);
+    //g1->algoritmo_bresenham(1,1,8,5);
 
     /*vector<vector<int>> mapa = {
 		{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1 }, 
