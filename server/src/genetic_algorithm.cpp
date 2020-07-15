@@ -20,7 +20,6 @@ void algorithms::mostrarPoblacion(vector<vector<int>> population) const{
     for (unsigned int i = 0; i < a; i++) { 
         for (unsigned int j = 0; j < b; j++)
             LOG(INFO) << population[i][j];
-            LOG(INFO) << (" ");
         LOG(INFO) << ("\n");
     }
 }
@@ -50,7 +49,7 @@ vector<vector<int>> algorithms::fitness(vector<vector<int>> population, int valo
     int b = int(population[0].size());
     for (unsigned int i = 0; i < a; i++) { 
         vector<int> individuo;
-        int c = individuo.size();
+        int c = int(individuo.size());
         int contador = 0;
         for (unsigned int j = 0; j < b; j++){
             individuo.push_back(population[i][j]);
