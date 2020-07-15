@@ -11,11 +11,11 @@ class algorithms{
     public:
 
         // Metodos algoritmo genetico
-        void mostrarPoblacion(vector<vector<int>> population);
-        vector<vector<int>> crearPoblacion();
-        vector<vector<int>> fitness(vector<vector<int>> population, int valor_modelo);
-        vector<vector<int>> selection_and_reproduction(vector<vector<int>> population, int valor_modelo);
-        vector<vector<int>> mutation(vector<vector<int>> population, int max_valor);
+        void mostrarPoblacion(vector<vector<int>> population) const;
+        vector<vector<int>> crearPoblacion() const;
+        vector<vector<int>> fitness(vector<vector<int>> population, int valor_modelo) const;
+        vector<vector<int>> selection_and_reproduction(vector<vector<int>> population, int valor_modelo) const;
+        vector<vector<int>> mutation(vector<vector<int>> population, int max_valor) const;
 
         // Metodos algoritmo Bresenham
         void algoritmo_bresenham(int x_begin, int y_begin, int x_end1, int y_end1) const;
