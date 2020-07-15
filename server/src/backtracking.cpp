@@ -18,7 +18,6 @@ vector<vector<int>> algorithms::generar(int row1, int col1, vector<vector<int>> 
 
 //function to print the solution matrix
 void algorithms::ruta_backtracking() const{
-    cout << "Hello everybody" << endl;
     AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);  
     int a = int(solution1.size());
     for(int i=0;i<a;i++)
@@ -35,7 +34,7 @@ void algorithms::ruta_backtracking() const{
 int algorithms::algoritmo_backtracking(int r, int c, int x_end, int y_end, vector<vector<int>> mapa, vector<vector<int>> solution) const{
 
     if (solution.size()==0){ 
-        solution = generar(mapa.size(), mapa[0].size(), solution);
+        solution = generar(int(mapa.size()), int(mapa[0].size()), solution);
     }
     //if destination is reached, maze is solved
     //destination is the last cell(maze[SIZE-1][SIZE-1])
@@ -58,7 +57,7 @@ int algorithms::algoritmo_backtracking(int r, int c, int x_end, int y_end, vecto
         if(algoritmo_backtracking(r+1, c, x_end, y_end, mapa, solution))
             return 1;
         //going right
-        if(algoritmo_backtracking(r, c+1, x_end, y_end, mapa, solution));
+        if(algoritmo_backtracking(r, c+1, x_end, y_end, mapa, solution))
             return 1;
         //going up
         if(algoritmo_backtracking(r-1, c, x_end, y_end, mapa, solution))
