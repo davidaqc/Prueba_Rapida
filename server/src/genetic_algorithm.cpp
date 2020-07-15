@@ -9,7 +9,7 @@ using namespace std;
 const int largo = 3;
 const int num = 3;
 const int pressure = 2;
-const float mutation_chance = 0.2;
+const double mutation_chance = 0.2;
 const int valor_inicial = 3; 
 
 // Mostrar la poblacion
@@ -30,7 +30,8 @@ vector<vector<int>> algorithms::crearPoblacion() const{
         vector<int> individuo;
         for(int j=0;j<largo;j++){
             std::uniform_int_distribution<std::mt19937::result_type> dist1(1,3);
-            individuo.push_back(dist1(rng)); // Valores del 1 al 3
+            int a = dist1(rng);
+            individuo.push_back(1); // Valores del 1 al 3
         }        
         Poblacion.push_back(individuo);
     }
@@ -150,7 +151,7 @@ vector<vector<int>> algorithms::mutation(vector<vector<int>> population, int max
     for (unsigned int ii = 0; ii < population.size()-pressure; ii++){
         //Cada individuo de la poblacion (menos los padres) tienen una probabilidad de mutar
             std::uniform_int_distribution<std::mt19937::result_type> dist1(1,9999);
-            float aleatorio = float(dist1(rng)) / float(10000);
+            double aleatorio = double(dist1(rng)) / double(10000);
             if (aleatorio <= mutation_chance){
                 
                 //  Se elige un punto al azar
