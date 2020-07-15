@@ -3,11 +3,7 @@
 #include <vector>
 #include<bits/stdc++.h> 
  
-bool entrar = true;
-vector<vector<int>> solution;
-vector< pair <int,int> > solution1;  
-
-void algorithms::generar(int row1, int col1) const{
+void algorithms::generar(int row1, int col1, vector<vector<int>> solution) const{
     for(unsigned int i=0; i<row1; i++){
         vector<int> v1; 
         for(unsigned int j=0; j<col1; j++){
@@ -18,21 +14,24 @@ void algorithms::generar(int row1, int col1) const{
 }
 
 //function to print the solution matrix
-void algorithms::ruta_backtracking() const{   
-    for(int i=0;i<solution1.size();i++)
-    {
-        std::cout << solution1[i].first;
-        std::cout << " ";
-        std::cout << solution1[i].second << endl;
+void algorithms::ruta_backtracking(vector< pair <int,int> > solution1) const{
+    AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);  
+    int a = int(solution1.size());
+    for(int i=0;i<a;i++)
+    {    
+        LOG(INFO) << solution1[i].first;
+        LOG(INFO) << " ";
+        LOG(INFO) << solution1[i].second;
+        LOG(INFO) << "\n";
     }
 }
 
 //function to solve the maze
 //using backtracking
-int algorithms::algoritmo_backtracking(int r, int c, int x_end, int y_end, vector<vector<int>> mapa) const{
+int algorithms::algoritmo_backtracking(int r, int c, int x_end, int y_end, vector<vector<int>> mapa, vector<vector<int>> solution, vector< pair <int,int> > solution1, bool entrar) const{
 
-    if (entrar!=false){ 
-        generar(mapa.size(), mapa[0].size());
+    if (entrar!=false){  
+        generar(mapa.size(), mapa[0].size(), solution);
         entrar = false;
     }
     //if destination is reached, maze is solved
@@ -53,16 +52,16 @@ int algorithms::algoritmo_backtracking(int r, int c, int x_end, int y_end, vecto
         solution[r][c] = 1;
         solution1.push_back(make_pair(r,c));
         //going down
-        if(algoritmo_backtracking(r+1, c, x_end, y_end, mapa))
+        if(algoritmo_backtracking(r+1, c, x_end, y_end, mapa, solution, solution1, entrar))
             return 1;
         //going right
-        if(algoritmo_backtracking(r, c+1, x_end, y_end, mapa))
+        if(algoritmo_backtracking(r, c+1, x_end, y_end, mapa, solution, solution1, entrar))
             return 1;
         //going up
-        if(algoritmo_backtracking(r-1, c, x_end, y_end, mapa))
+        if(algoritmo_backtracking(r-1, c, x_end, y_end, mapa, solution, solution1, entrar))
             return 1;
         //going left
-        if(algoritmo_backtracking(r, c-1, x_end, y_end, mapa))
+        if(algoritmo_backtracking(r, c-1, x_end, y_end, mapa, solution, solution1, entrar))
             return 1;
         //backtracking
         solution[r][c] = 0;
