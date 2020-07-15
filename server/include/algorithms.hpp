@@ -16,6 +16,8 @@ class algorithms{
         vector<vector<int>> fitness(vector<vector<int>> population, int valor_modelo) const;
         vector<vector<int>> selection_and_reproduction(vector<vector<int>> population, int valor_modelo) const;
         vector<vector<int>> mutation(vector<vector<int>> population, int max_valor) const;
+        vector<vector<int>> eliminar_valores_vector(vector<vector<int>> population) const;
+        vector<vector<int>> quitar_individuos(vector<vector<int>> population) const;
 
         // Metodos algoritmo Bresenham
         void algoritmo_bresenham(int x_begin, int y_begin, int x_end1, int y_end1) const;

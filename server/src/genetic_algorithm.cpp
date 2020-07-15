@@ -74,30 +74,11 @@ vector<vector<int>> algorithms::selection_and_reproduction(vector<vector<int>> p
     // Ordena el vector
     sort(population.begin(), population.end());
 
-    // Eliminar el primer valor de cada vector
-    vector<vector<int>> puntuados;
-    for (unsigned int i = 0; i < population.size(); i++) { 
-        vector<int> individuo;
-        for (unsigned int j = 1; j < population[i].size(); j++){
-            individuo.push_back(population[i][j]);
-        }
-        puntuados.push_back(individuo);
-    }
+    population = eliminar_valores_vector(population);
 
-    population = puntuados;
-
-    // Esto selecciona los 'n' individuos del final, donde n viene dado por 'pressure'
-    unsigned int individuos_quitar = int(population.size() - pressure);
+    // --- Quitar individuos
     vector<vector<int>> selected;
-    for (unsigned int i = 0; i < population.size(); i++) {
-        vector<int> individuo2;
-        if (i >= individuos_quitar){
-            for (unsigned int j = 0; j < population[i].size(); j++){
-                individuo2.push_back(population[i][j]);
-            }
-            selected.push_back(individuo2);
-        }   
-    }
+    selected = quitar_individuos(population);
 
     // Se mezcla el material genetico para crear nuevos individuos
     for (unsigned int ii = 0; ii < population.size()-pressure; ii++){
@@ -134,7 +115,7 @@ vector<vector<int>> algorithms::selection_and_reproduction(vector<vector<int>> p
             
         //Se mezcla el material genetico del padre 1 en cada nuevo individuo
         unsigned indice_mayor = int(population[0].size() - 1);
-        for (unsigned int j=indice_mayor; j>=((indice_mayor - punto)); j--) {
+        for (unsigned int j=indice_mayor; j>=(indice_mayor - punto); j--) {
             population[ii][j] = padre[1][j];
             if (j==0){
                 break;
@@ -176,4 +157,33 @@ vector<vector<int>> algorithms::mutation(vector<vector<int>> population, int max
     }
 
     return population;
+}
+
+vector<vector<int>> algorithms::eliminar_valores_vector(vector<vector<int>> population) const{
+    // Eliminar el primer valor de cada vector
+    vector<vector<int>> puntuados;
+    for (unsigned int i = 0; i < population.size(); i++) { 
+        vector<int> individuo;
+        for (unsigned int j = 1; j < population[i].size(); j++){
+            individuo.push_back(population[i][j]);
+        }
+        puntuados.push_back(individuo);
+    }
+    return puntuados;
+}
+
+vector<vector<int>> algorithms::quitar_individuos(vector<vector<int>> population) const{
+    // Esto selecciona los 'n' individuos del final, donde n viene dado por 'pressure'
+    unsigned int individuos_quitar = int(population.size() - pressure);
+    vector<vector<int>> selected;
+    for (unsigned int i = 0; i < population.size(); i++) {
+        vector<int> individuo2;
+        if (i >= individuos_quitar){
+            for (unsigned int j = 0; j < population[i].size(); j++){
+                individuo2.push_back(population[i][j]);
+            }
+            selected.push_back(individuo2);
+        }   
+    }
+    return selected;
 }
