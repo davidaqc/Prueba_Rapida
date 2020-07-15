@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
     AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);
-    LOG(INFO) << "Holaa\n";
+    LOG(INFO) << "Hola\n";
     algorithms *g1 = new algorithms();
     
     /*vector<vector<int>> population = g1->crearPoblacion();
