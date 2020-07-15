@@ -9,18 +9,20 @@
 #include <string>
 using namespace std;
 
-void algorithms::ruta_bresenham() const{
-	/*for(auto rows: ruta){
+void algorithms::ruta_bresenham(vector<vector<int>> ruta) const{
+	/* --- for(auto rows: ruta){
 		for(auto elem: rows){
 			//std::cout << ruta[i][j] << " ";-
 			continue;
 		}
 		//std::cout << endl;-
-	}--*/
+	} -- */
 }
 
 void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 	vector<vector<int>> ruta;
+	vector<int> coordenada;
+	
 	int x;
 	int y;
 	int dx;
@@ -49,11 +51,11 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 			y=y2;
 			xe=x1;
 		}
-		vector<int> coordenada;
+
 		coordenada.push_back(x);
 		coordenada.push_back(y);
 		ruta.push_back(coordenada);
-
+		
 		while(x<xe) {
 			x=x+1;
 
@@ -72,6 +74,7 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 			coordenada1.push_back(y);
 			ruta.push_back(coordenada1);
 		}
+		ruta_bresenham(ruta);
 	}
 
 	else {
@@ -80,8 +83,8 @@ void algorithms::algoritmo_bresenham(int x1, int y1, int x2, int y2) const{
 }
 
 void algorithms::a(int x1, int y1, int x2, int y2, vector<vector<int>> ruta) const{
+	vector<int> coordenada2;
 	vector<int> coordenada3;
-	vector<int> coordenada4;
 	int x;
 	int y;
 	int dx;
@@ -93,8 +96,8 @@ void algorithms::a(int x1, int y1, int x2, int y2, vector<vector<int>> ruta) con
 	int ye;
 	dx=x2-x1;
 	dy=y2-y1;
-	dx1= -1 * dx;
-	dy1= -1 * dy;
+	dx1= abs(dx);
+	dy1= abs(dy);
 	px=2*dy1-dx1;
 	py=2*dx1-dy1;
 
@@ -110,9 +113,9 @@ void algorithms::a(int x1, int y1, int x2, int y2, vector<vector<int>> ruta) con
 			ye=y1;
 		}
 
-		coordenada3.push_back(x);
-		coordenada3.push_back(y);
-		ruta.push_back(coordenada3);
+		coordenada2.push_back(x);
+		coordenada2.push_back(y);
+		ruta.push_back(coordenada2);
 
 		while(y<ye) {
 			y=y+1;
@@ -130,9 +133,10 @@ void algorithms::a(int x1, int y1, int x2, int y2, vector<vector<int>> ruta) con
 				py=py+2*(dx1-dy1);	
 			}
 
-			coordenada4.push_back(x);
-			coordenada4.push_back(y);
-			ruta.push_back(coordenada4);
+			coordenada3.push_back(x);
+			coordenada3.push_back(y);
+			ruta.push_back(coordenada3);
 		}
-
+	
+	ruta_bresenham(ruta);	
 }
