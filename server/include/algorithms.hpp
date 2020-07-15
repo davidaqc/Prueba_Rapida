@@ -26,9 +26,9 @@ class algorithms{
         void a(int x1, int y1, int x2, int y2, vector<vector<int>> mapa) const;
 
         // Metodos algoritmo Backtracking
-        int algoritmo_backtracking(int r, int c, int x_end, int y_end, vector<vector<int>> mapa);
-        void ruta_backtracking();
-        void generar(int row, int col);
+        int algoritmo_backtracking(int r, int c, int x_end, int y_end, vector<vector<int>> mapa) const;
+        void ruta_backtracking() const;
+        void generar(int row, int col) const;
 
         // Metodos algortimo A Star
         typedef pair<int, int> Pair;

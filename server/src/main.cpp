@@ -12,7 +12,7 @@ int main()
     LOG(INFO) << "Hola\n";
     algorithms *g1 = new algorithms();
     
-    vector<vector<int>> population = g1->crearPoblacion();
+    /*vector<vector<int>> population = g1->crearPoblacion();
 
       // Se muestra la poblacion inicial
     cout << "Poblacion Inicial:" << endl;
@@ -32,7 +32,7 @@ int main()
 
     // Se muestra la poblacion final
     cout << "Poblacion Final:" << endl;
-    g1->mostrarPoblacion(population);
+    g1->mostrarPoblacion(population);*/
 
     // ---- Ejecutar Bresenham (x_inicial, y_inicial, x_final, y_final)
     //g1->algoritmo_bresenham(1,1,8,5);

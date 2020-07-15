@@ -7,7 +7,7 @@ bool entrar = true;
 vector<vector<int>> solution;
 vector< pair <int,int> > solution1;  
 
-void algorithms::generar(int row1, int col1){
+void algorithms::generar(int row1, int col1) const{
     for(unsigned int i=0; i<row1; i++){
         vector<int> v1; 
         for(unsigned int j=0; j<col1; j++){
@@ -18,8 +18,7 @@ void algorithms::generar(int row1, int col1){
 }
 
 //function to print the solution matrix
-void algorithms::ruta_backtracking()
-{   
+void algorithms::ruta_backtracking() const{   
     for(int i=0;i<solution1.size();i++)
     {
         std::cout << solution1[i].first;
@@ -30,8 +29,7 @@ void algorithms::ruta_backtracking()
 
 //function to solve the maze
 //using backtracking
-int algorithms::algoritmo_backtracking(int r, int c, int x_end, int y_end, vector<vector<int>> mapa)
-{
+int algorithms::algoritmo_backtracking(int r, int c, int x_end, int y_end, vector<vector<int>> mapa) const{
 
     if (entrar!=false){ 
         generar(mapa.size(), mapa[0].size());
