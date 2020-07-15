@@ -14,6 +14,7 @@ set(src
 
 set(head
     server/include/algorithms.hpp
+    server/include/aixlog.hpp
 )
 
 include_directories(${PROJECT_SOURCE_DIR}/server/include/)
