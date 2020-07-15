@@ -22,8 +22,6 @@ struct cell
 	double h;
 }; 
 
-vector<vector<cell>> cellDetails;
-
 // A Utility Function to check whether given cell (row, col) 
 // is a valid cell or not. 
 bool isValid(int row, int col, int ROW_, int COL_) 
@@ -97,7 +95,7 @@ void tracePath(vector<vector<cell>> cellDetails1, Pair dest)
 	return; 
 } 
 
-void generar1(int row1, int col1){
+vector<vector<cell>> generar1(int row1, int col1, vector<vector<cell>> cellDetails){
     for(unsigned int i=0; i<row1; i++){
         vector<cell> v1; 
         for(unsigned int j=0; j<col1; j++){
@@ -111,12 +109,14 @@ void generar1(int row1, int col1){
         }
         cellDetails.push_back(v1); 
     }
+	return cellDetails;
 }
 
 // A Function to find the shortest path between 
 // a given source cell to a destination cell according 
 // to A* Search Algorithm 
 void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) const { 
+	vector<vector<cell>> cellDetails;
 	AixLog::Log::init<AixLog::SinkCout>(AixLog::Severity::trace);
 	int ROW_ = int(mapa.size());
     int COL_ = int(mapa[0].size()); 
@@ -159,7 +159,7 @@ void algorithms::algoritmo_aStar(Pair src, Pair dest, vector<vector<int>> mapa) 
 	// Declare a 2D array of structure to hold the details 
 	//of that cell 
 
-	generar1(ROW_, COL_);
+	cellDetails = generar1(ROW_, COL_, cellDetails);
 
 	int i; 
 	int j;
